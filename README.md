@@ -12,13 +12,21 @@
             background-color: #f4f7f6;
             color: #333;
         }
+        
+        /* 1. FLEXBOX NO HEADER */
         header {
             background-color: #1a1a2e;
             color: #ffffff;
             padding: 40px 20px;
             border-bottom: 4px solid #00adb5;
+            
+            display: flex;               /* Ativa o Flexbox */
+            flex-direction: column;      /* Alinha os itens em coluna (um embaixo do outro) */
+            align-items: center;         /* Centraliza horizontalmente */
+            justify-content: center;     /* Centraliza verticalmente */
             text-align: center;
         }
+        
         h1 {
             font-size: 3rem;
             margin: 0 0 10px 0;
@@ -42,7 +50,6 @@
             margin-bottom: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
         }
         .artigo h2 {
             margin-top: 0;
@@ -60,14 +67,18 @@
             color: #777;
             margin-bottom: 15px;
         }
+        
+        /* 2. FLEXBOX NO RODAPÉ DO ARTIGO */
         .rodape-artigo {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #eee;
+            
+            display: flex;               /* Ativa o Flexbox */
+            justify-content: space-between; /* Empurra um item para a esquerda e o outro para a direita */
+            align-items: center;         /* Alinha o botão de texto e o botão de coração na mesma linha horizontal */
         }
+        
         .botao-ler {
             color: #00adb5;
             text-decoration: none;
@@ -76,19 +87,21 @@
         .botao-ler:hover {
             text-decoration: underline;
         }
-        /* Estilo do Botão de Coração */
+        
+        /* 3. FLEXBOX INTERNO DO BOTÃO DE GOSTEI */
         .botao-gostei {
             background: none;
             border: 1px solid #ccc;
             padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
             color: #555;
             transition: all 0.2s ease;
+            
+            display: flex;               /* Ativa o Flexbox dentro do botão */
+            align-items: center;         /* Alinha o coração e o número perfeitamente no meio */
+            gap: 6px;                    /* Cria um espaço fixo de 6px entre o coração e o número */
+            font-size: 0.9rem;
         }
         .botao-gostei:hover {
             background-color: #ffe6e6;
@@ -156,20 +169,17 @@
 
     <script>
         function curtir(botao) {
-            // Seleciona o número que está dentro do botão clicado
             const contadorElemento = botao.querySelector('.contador');
             let curtidas = parseInt(contadorElemento.innerText);
 
-            // Verifica se o botão já foi clicado (se tem a classe 'ativo')
             if (botao.classList.contains('ativo')) {
                 botao.classList.remove('ativo');
-                curtidas--; // Remove a curtida
+                curtidas--;
             } else {
                 botao.classList.add('ativo');
-                curtidas++; // Adiciona a curtida
+                curtidas++;
             }
 
-            // Atualiza o texto na tela
             contadorElemento.innerText = curtidas;
         }
     </script>
